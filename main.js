@@ -10,21 +10,15 @@ var coffeeShop = {
 
   makeDrink: function (drinkType) {
     // TODO: Finish this method
-    var list = Object.keys(this.drinkRequirements);
-    for (var i=0; i<list.length; i++) {
-      if (list[i] === drinkType) {
-        if (this.beans >= this.drinkRequirements[list[i]]) {
-          this.beans -= this.drinkRequirements[list[i]];
-          console.log(this.beans);
-        } else {
-          console.log ("Sorry, we're all out of beans!");
-        }
-        return;
-      } 
-    } 
-    console.log ("Sorry, we don't make DRINKNAME");
+    if (this.drinkRequirements[drinkType] !== undefined && this.beans >= this.drinkRequirements[drinkType]) {
+      this.beans -= this.drinkRequirements[drinkType];
+    } else if (this.drinkRequirements[drinkType] !== undefined && this.beans < this.drinkRequirements[drinkType]) {
+      alert ("Sorry, we're all out of beans!");
+    } else {
+      alert ("Sorry, we don't make DRINKNAME");
+    }
   }
-}
+} 
 
 coffeeShop.makeDrink("latte");
 coffeeShop.makeDrink("americano");
